@@ -1,0 +1,67 @@
+package com.advanced;
+import java.sql.*;
+import java.util.*;
+public class ToDoList {
+public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	try(sc;){
+		Class.forName("oracle.jdbc.OracleDriver");
+		try {
+			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","oracle");
+			PreparedStatement ps1=con.prepareStatement("select * from todoList");
+			PreparedStatement ps2=con.prepareStatement("insert into todoList  values(?)");
+			while(true) {
+			System.out.println("-----Choice------");
+			System.out.println("1.View To-Do-List");
+			System.out.println("2.Enter new work To-Do-List");
+			System.out.println("3.Exit");
+			System.out.println("Enter your choice:");
+			int choice=sc.nextInt();
+			sc.nextLine();
+			switch(choice) {
+			case 1:
+				System.out.println("---------------To-Do-List------------------");
+				ResultSet res1=ps1.executeQuery();
+				boolean found=false;
+				while(res1.next()) {
+					String list=res1.getString(1);
+					System.out.println(list);
+					found=true;
+				}
+			if(!found) {
+					System.err.println("empty list");	
+				}
+				break;
+			case 2:
+				while(true) {
+				System.out.println("Enter the work to add into the To-Do-List:");
+				String code=sc.nextLine();
+				ps2.setString(1, code);
+				int k1=ps2.executeUpdate();
+				if(k1>0) {
+					System.out.println("work is added into the List");
+				}
+				System.out.println("Want to add more(y/n)");
+				String c1=sc.nextLine();
+				if(!c1.equals("y")) {
+					break;
+				}
+				}
+				break;
+			case 3:
+				System.out.println("Your request of exit is Executed Successfully");
+				System.exit(0);
+				break;
+				default:
+					System.err.println("Invalid Choice");
+			}
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}catch (Exception e) {
+		
+		e.printStackTrace();
+	}
+}
+}
