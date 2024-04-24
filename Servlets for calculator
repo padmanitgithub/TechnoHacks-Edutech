@@ -1,0 +1,171 @@
+---------------------------->Addition Servlet
+package test;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+
+import java.io.*;
+@WebServlet("/ad")
+@SuppressWarnings("serial")
+public class AdditionServlet extends GenericServlet {
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		int v1=Integer.parseInt(req.getParameter("v1"));
+		int v2=Integer.parseInt(req.getParameter("v2"));
+		int v3=v1+v2;
+		pw.println("sum is :"+v3+"<br>");
+		RequestDispatcher rd=req.getRequestDispatcher("request.html");
+		rd.include(req, res);
+		
+	}
+
+}
+//------------------------>Subtraction Servlet
+package test;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import java.io.*;
+@WebServlet("/sub")
+@SuppressWarnings("serial")
+public class Subtraction extends GenericServlet  {
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		int v1=Integer.parseInt(req.getParameter("v1"));
+		int v2=Integer.parseInt(req.getParameter("v2"));
+		int v3=v1-v2;
+		pw.println("subbratction:"+v3+"<br>");
+		RequestDispatcher rd=req.getRequestDispatcher("request.html");
+		rd.include(req, res);
+		
+	}
+
+}
+-------------------------------->Multiplication Servlet
+package test;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import java.io.*;
+@SuppressWarnings("serial")
+@WebServlet("/mul")
+public class Multiplication extends GenericServlet{
+
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		int v1=Integer.parseInt(req.getParameter("v1"));
+		int v2=Integer.parseInt(req.getParameter("v2"));
+		int v3=v1*v2;
+		pw.println("multiplication:"+v3+"<br>");
+		RequestDispatcher rd=req.getRequestDispatcher("request.html");
+		rd.include(req, res);
+	}
+}
+--------------------------------->Average Sevlet 
+package test;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import java.io.*;
+@SuppressWarnings("serial")
+@WebServlet("/av")
+public class Average extends GenericServlet {
+
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		int v1=Integer.parseInt(req.getParameter("v1"));
+		int v2=Integer.parseInt(req.getParameter("v2"));
+		float v3=(float)(v1+v2)/2;
+		pw.println("Avg:"+v3+"<br>");
+		RequestDispatcher rd=req.getRequestDispatcher("request.html");
+		rd.include(req, res);
+	}
+
+}
+---------------------------------------->Division Servelet
+package test;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import java.io.*;
+@SuppressWarnings("serial")
+@WebServlet("/div")
+public class Division extends GenericServlet{
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		int v1=Integer.parseInt(req.getParameter("v1"));
+		int v2=Integer.parseInt(req.getParameter("v2"));
+		float v3=(float)v1/v2;
+		pw.println("Division:"+v3+"<br>");
+		RequestDispatcher rd=req.getRequestDispatcher("request.html");
+		rd.include(req, res);
+	}
+}
+----------------------------------->Modulus Servelt
+package test;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import java.io.*;
+@SuppressWarnings("serial")
+@WebServlet("/mod")
+public class Mod extends GenericServlet{
+
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		int v1=Integer.parseInt(req.getParameter("v1"));
+		int v2=Integer.parseInt(req.getParameter("v2"));
+		float v3=(float)v1%v2;
+		pw.println("mod"+v3+"<br>");
+		RequestDispatcher rd=req.getRequestDispatcher("request.html");
+		rd.include(req, res);
+	}
+}
+----------------------------------->Main Servelt
+package test;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+
+import java.io.*;
+@SuppressWarnings("serial")
+@WebServlet("/choice")
+public class Request extends GenericServlet {
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+	String s1=req.getParameter("s1");
+	if(s1.equals("+")) {
+		RequestDispatcher rd=req.getRequestDispatcher("ad");
+		rd.forward(req, res);
+	}else if(s1.equals("-")){
+		RequestDispatcher rd=req.getRequestDispatcher("sub");
+		rd.forward(req, res);
+	}else if(s1.equals("Avg")) {	
+		RequestDispatcher rd=req.getRequestDispatcher("av");
+		rd.forward(req, res);
+	}else if(s1.equals("*")) {
+		RequestDispatcher rd=req.getRequestDispatcher("mul");
+		rd.forward(req, res);
+	}else if(s1.equals("/")) {
+		RequestDispatcher rd=req.getRequestDispatcher("div");
+		rd.forward(req, res);
+	}else {
+		RequestDispatcher rd=req.getRequestDispatcher("mod");
+		rd.forward(req, res);
+	}
+		
+	}
+}
+
+
+
+
+
+
+
+
