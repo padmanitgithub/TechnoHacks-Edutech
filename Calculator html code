@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body{
+text-align:center;
+padding:100px;
+border: 1px solid blue ;
+margin:2px;
+}
+.div1{
+color:green;
+padding:10px;
+margin:10px;
+}
+.div2{
+color:orange;
+padding:10px;
+margin:10px;
+}
+
+</style>
+</head>
+<body>
+<form action="choice" method="post">
+<div class="div1">
+Enter value1:<input type="text" name="v1"><br>
+</div>
+<div class="div2">
+Enter Value2:<input type="text" name="v2"><br>
+</div>
+<div class="div3">
+<input type="submit" value="+" name="s1">
+<input type="submit" value="-" name="s1">
+<input type="submit" value="Avg" name="s1">
+<input type="submit" value="*" name="s1">
+<input type="submit" value="/" name="s1">
+<input type="submit" value="%" name="s1">
+</div>
+</form>
+</body>
+</html>
